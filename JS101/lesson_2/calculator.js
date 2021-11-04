@@ -10,24 +10,24 @@ console.log("Welcome to Calculator!");
 console.log('What\'s the first number?');
 let number1 = readline.question();
 
-console.log('What\s the second number?');
+console.log('What\'s the second number?');
 let number2 = readline.question();
 
 console.log('What operation would you like to perform:\n1) Add 2) Subtract 3) Multiply 4) Divide');
 let operation = readline.question();
 
 let output;
-switch(operation) {
-  case 1:
+switch (operation) {
+  case '1':
     output = number1 + number2;
     break;
-  case 2:
+  case '2':
     output = number1 - number2;
     break;
-  case 3:
+  case '3':
     output = number1 * number2;
     break;
-  case 4:
+  case '4':
     output = number1 / number2;
     break;
   default:
