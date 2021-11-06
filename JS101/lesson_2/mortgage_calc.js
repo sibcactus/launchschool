@@ -14,7 +14,7 @@ function calcMonthlyPayment(loanAmount, mInterestRate, loanMonths) {
   return mPayment.toFixed(2);
 }
 
-function getUserInput(prompt, isCorrectInput) { //isCorrectInput() should return true if input is correct input === NaN || input < 0
+function getUserInput(prompt, isCorrectInput) { //isCorrectInput() should return true if input is correct
   let input = Number(rl.prompt({prompt: prompt}));
   if (!isCorrectInput(input)) {
     console.log("Error: wrong input");
@@ -42,7 +42,7 @@ function calculate() {
 
 while (true) {
   console.log("Welcome to Mortgage Calculator!");
-  console.log(`Your monthly payment is ${calculate()}`);
+  console.log(`Your monthly payment is \S${calculate()}`);
   let keyIn = rl.keyIn("Press C to exit or any other button to continue > ");
   if (keyIn.toLowerCase() === 'c') break;
 }
