@@ -1,5 +1,6 @@
 const rl = require('readline-sync');
 
+
 function calcMonthlyPayment(loanAmount, mInterestRate, loanMonths) {
   let mPayment;
   if (mInterestRate !== 0) {
