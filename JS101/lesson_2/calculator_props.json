@@ -1,0 +1,31 @@
+{
+  "OPERATIONS":  [
+    "sum",
+    "subtract",
+    "multiply",
+    "divide"
+  ],
+  "lang": "en",
+  "messages": {
+    "en": {
+      "WELCOME": "Welcome to the Calculator!",
+      "ENTER_FIRST_NUMBER": "What's the first number? >",
+      "ENTER_SECOND_NUMBER": "What's the second number? >",
+      "ENTER_OPERATION": "What operation would you like to perform:",
+      "PRESS_C_TO_EXIT": "Press C to exit or any button to perform another operation >",
+      "ERROR_INVALID_NUMBER": "Error: please, enter a valid number > ",
+      "ERROR_INVALID_OPERATION": "Error:  wrong operation.",
+      "RESULT_OF_OPERATION_IS": "Result of operation is"
+    }
+  },
+  "ru": {
+    "WELCOME": "Добро пожаловать в калькулятор!",
+    "ENTER_FIRST_NUMBER": "Введите первое число >",
+    "ENTER_SECOND_NUMBER": "Введите второе число >",
+    "ENTER_OPERATION": "Какую операцию вы хотите произвести:",
+    "PRESS_C_TO_EXIT": "Нажмите С для выхода из программы >",
+    "ERROR_INVALID_NUMBER": "Ошибка: Введите правильное число > ",
+    "ERROR_INVALID_OPERATION": "Ошибка: Неверная операция.",
+    "RESULT_OF_OPERATION_IS": "Результат операции:"
+  }
+}

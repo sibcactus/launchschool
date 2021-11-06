@@ -1,61 +1,69 @@
-//ask user for the first number
-//ask user for the second number
-//ask user for an operation to perform
-//perform operation on the two numbers
-//print the result to the terminal
-const readline = require('readline-sync');
-
-function prompt(message) {
-  console.log(`=> ${message}`);
-}
+const rl = require('readline-sync');
+const CONSTANTS = require('./calculator_props.json');
 
 function invalidNumber(number) {
   return number.trimStart() === '' || Number.isNaN(Number(number));
 }
 
-prompt("Welcome to Calculator!");
-
-prompt('What\'s the first number?');
-let number1 = readline.question();
-
-while (invalidNumber(number1)) {
-  prompt("Doesn't look like a valid number");
-  number1 = readline.question();
+function getNumber(prompt) {
+  let number = rl.prompt({prompt: prompt});
+  if (invalidNumber(number)) {
+    console.log(CONSTANTS.messages[CONSTANTS.lang].ERROR_INVALID_NUMBER);
+    number = getNumber(prompt);
+  }
+  return number;
 }
 
-prompt('What\'s the second number?');
-let number2 = readline.question();
-
-while (invalidNumber(number2)) {
-  prompt("Doesn't look like a valid number");
-  number2 = readline.question();
+function getOpsList() {
+  return CONSTANTS.OPERATIONS
+    .map((element, idx) => `${idx}) ${element}`)
+    .join('\n');
 }
 
-prompt('What operation would you like to perform:\n1) Add 2) Subtract 3) Multiply 4) Divide');
-let operation = readline.question();
+function getOperation() {
 
-while (!['1', '2', '3', '4'].includes(operation)) {
-  prompt('Must choose 1, 2, 3 or 4');
-  operation = readline.question();
+  let operation = rl.prompt(
+    {
+      prompt: `${CONSTANTS.messages[CONSTANTS.lang].ENTER_OPERATION}\n${getOpsList()}\n> `
+    });
+
+  if (!CONSTANTS.OPERATIONS.includes(operation)) {
+    console.log(CONSTANTS.messages[CONSTANTS.lang].ERROR_INVALID_OPERATION);
+    return getOperation();
+  }
+  return operation;
 }
 
-let output;
-switch (operation) {
-  case '1':
-    output = Number(number1) + Number(number2);
-    break;
-  case '2':
-    output = Number(number1) - Number(number2);
-    break;
-  case '3':
-    output = Number(number1) * Number(number2);
-    break;
-  case '4':
-    output = Number(number1) / Number(number2);
-    break;
-  default:
-    output = 'Wrong operation';
+function calculate() {
+
+  let number1 = getNumber(
+    CONSTANTS.messages[CONSTANTS.lang].ENTER_FIRST_NUMBER);
+  let number2 = getNumber(
+    CONSTANTS.messages[CONSTANTS.lang].ENTER_SECOND_NUMBER);
+
+  while (true) {
+    let operation = getOperation();
+    switch (operation) {
+      case '0':
+        return Number(number1) + Number(number2);
+      case '1':
+        return Number(number1) - Number(number2);
+      case '2':
+        return Number(number1) * Number(number2);
+      case '3':
+        return Number(number1) / Number(number2);
+    }
+    console.log(CONSTANTS.messages[CONSTANTS.lang].ERROR_INVALID_OPERATION);
+  }
 }
 
-prompt(`The result is ${output}`);
+console.log(CONSTANTS.messages[CONSTANTS.lang].WELCOME);
 
+while (true) {
+
+  let result = calculate();
+  console.log(`${CONSTANTS.messages[CONSTANTS.lang].RESULT_OF_OPERATION_IS} ${result}`);
+
+  let keyIn = rl.keyIn(CONSTANTS.messages[CONSTANTS.lang].PRESS_C_TO_EXIT); //ask for exit
+  if (keyIn.toLowerCase() === 'c') break;
+}
